@@ -1,71 +1,24 @@
 {
   "menu": [
     {
-      "url": "/",
+      "url": "dashboard",
       "name": "Dashboards",
       "icon": "menu-icon tf-icons mdi mdi-home-outline",
       "slug": "dashboard",
       "badge": [
         "danger",
         "5"
-      ],
-      "submenu": [
-        {
-          "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/dashboard/crm",
-          "name": "CRM",
-          "slug": "dashboard-crm",
-          "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
-        },
-        {
-          "url": "/",
-          "name": "Analytics",
-          "slug": "dashboard-analytics"
-        },
-        {
-          "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/ecommerce/dashboard",
-          "name": "eCommerce",
-          "slug": "app-ecommerce-dashboard",
-          "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
-        },
-        {
-          "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/logistics/dashboard",
-          "name": "Logistics",
-          "slug": "app-logistics-dashboard",
-          "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
-        },
-        {
-          "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/academy/dashboard",
-          "name": "Academy",
-          "slug": "app-academy-dashboard",
-          "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
-        }
       ]
     },
     {
-      "name": "Layouts",
-      "icon": "menu-icon tf-icons mdi mdi-window-maximize",
+      "name": "Data Master",
+      "icon": "menu-icon tf-icons mdi mdi-database",
       "slug": "layouts",
       "submenu": [
         {
-          "url": "layouts/without-menu",
-          "name": "Without menu",
-          "slug": "layouts-without-menu"
+          "url": "dashboard/data/kategori",
+          "name": "Kategori",
+          "slug": "kategori-menu"
         },
         {
           "url": "layouts/without-navbar",
