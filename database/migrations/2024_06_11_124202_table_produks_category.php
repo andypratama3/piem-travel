@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('produks_categorys', function (Blueprint $table) {
+            $table->foreignUuid('produks_id')->references('id')->on('produks')->onDelete('cascade');
+            $table->foreignUuid('categories_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->primary(['produks_id', 'categories_id']);
+        });
     }
 
     /**
@@ -19,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('produks_categorys');
     }
 };
