@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\layouts\Blank;
 
-
-
-
 use App\Http\Controllers\layouts\Fluid;
 use App\Http\Controllers\icons\MdiIcons;
 use App\Http\Controllers\cards\CardBasic;
@@ -42,18 +39,20 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\extended_ui\PerfectScrollbar;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\authentications\RegisterBasic;
-use App\Http\Controllers\Dashboard\DashboardController;
+
+use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\pages\AccountSettingsConnections;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
-use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 
 
 
 //Dashboard
+use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
+use App\Http\Controllers\dashboard\ProductController as DashboardProductController;
+use App\Http\Controllers\dashboard\CategoryController as DashboardCategoryController;
 
-use App\Http\Controllers\Dashboard\CategoryController as DashboardCategoryController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -63,8 +62,10 @@ use App\Http\Controllers\Dashboard\CategoryController as DashboardCategoryContro
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', DashboardController::class)->name('dashboard');
 
-    Route::prefix('data')->group(function () {
-        Route::resource('kategori', DashboardCategoryController::class, ['names' => 'kategori']);
+    Route::prefix('product')->group(function () {
+        Route::resource('/', DashboardProductController::class, ['names' => 'dashboard.product']);
+        Route::resource('kategori', DashboardCategoryController::class, ['names' => 'dashboard.kategori']);
+
     });
 });
 // Route::middleware([

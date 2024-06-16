@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use View;
 use Illuminate\Support\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
@@ -23,6 +24,6 @@ class MenuServiceProvider extends ServiceProvider
     $verticalMenuData = json_decode($verticalMenuJson);
 
     // Share all menuData to all the views
-    \View::share('menuData', [$verticalMenuData]);
+    View::share('menuData', [$verticalMenuData]);
   }
 }

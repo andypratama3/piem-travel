@@ -4,42 +4,27 @@
       "url": "dashboard",
       "name": "Dashboards",
       "icon": "menu-icon tf-icons mdi mdi-home-outline",
-      "slug": "dashboard",
-      "badge": [
-        "danger",
-        "5"
-      ]
+      "slug": "dashboard"
     },
     {
-      "name": "Data Master",
+      "name": "Product",
       "icon": "menu-icon tf-icons mdi mdi-database",
-      "slug": "layouts",
+      "slug": "dashboard",
       "submenu": [
         {
-          "url": "dashboard/data/kategori",
+          "url": "dashboard/product/kategori",
           "name": "Kategori",
-          "slug": "kategori-menu"
+          "slug": "dashboard.kategori.index"
         },
         {
-          "url": "layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "layouts/container",
-          "name": "Container",
+          "url": "Add Product",
+          "name": "Create Product",
           "slug": "layouts-container"
         },
         {
-          "url": "layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
+          "url": "layouts/without-navbar",
+          "name": "Product List",
+          "slug": "layouts-without-navbar"
         }
       ]
     },
