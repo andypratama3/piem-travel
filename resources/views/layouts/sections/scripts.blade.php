@@ -49,19 +49,16 @@
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Yes, delete it!",
                     cancelButtonText: "No, cancel!",
+                    reverseButtons: true,
+
                     }).then((result) => {
                     if (result.isConfirmed) {
                         $(`#delete-${slug}`).submit();
-                        Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                        });
                     }else{
                         Swal.fire({
                         title: "Cancelled!",
                         text: "Your Data Cancel deleted.",
-                        icon: "success"
+                        icon: "error",
                         });
                     }
                 });

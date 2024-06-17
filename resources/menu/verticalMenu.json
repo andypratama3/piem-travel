@@ -17,14 +17,14 @@
           "slug": "dashboard.kategori.index"
         },
         {
-          "url": "Add Product",
+          "url": "dashboard/product/create",
           "name": "Create Product",
-          "slug": "layouts-container"
+          "slug": "dashboard.product.create"
         },
         {
-          "url": "layouts/without-navbar",
+          "url": "dashboard/product/",
           "name": "Product List",
-          "slug": "layouts-without-navbar"
+          "slug": "dashboard.product.index"
         }
       ]
     },

@@ -64,6 +64,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::prefix('product')->group(function () {
         Route::resource('/', DashboardProductController::class, ['names' => 'dashboard.product']);
+        Route::get('datatable', [DashboardProductController::class, 'datatable'])->name('dashboard.product.datatable');
         Route::resource('kategori', DashboardCategoryController::class, ['names' => 'dashboard.kategori']);
 
     });

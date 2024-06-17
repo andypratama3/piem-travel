@@ -4,10 +4,9 @@
 
 
 @section('content')
-<h4 class="py-3 mb-4">
+<h4 class="py-3 mb-4 p-4">
     <span class="text-muted fw-light">Product /</span> Category List
-
-    <a href="{{ route('dashboard.kategori.create') }}" class="btn btn-primary btn-sm float-end">Create</a>
+    <a href="{{ route('dashboard.kategori.create') }}" class="btn btn-primary btn-sm float-end"><i class="mdi mdi-plus"></i> Create</a>
 </h4>
 
 <div class="app-ecommerce-category">

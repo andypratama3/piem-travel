@@ -17,7 +17,10 @@ return new class extends Migration
             $table->longtext('description');
             $table->string('image');
             $table->string('price');
+            $table->string('stock');
+            $table->string('status')->default('active');
             $table->string('slug');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
