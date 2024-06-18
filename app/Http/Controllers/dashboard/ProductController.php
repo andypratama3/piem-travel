@@ -56,7 +56,6 @@ class ProductController extends Controller
 
     public function show(Produk $product)
     {
-        dd($product);
         return view('content.dashboard.data.product.show', compact('product'));
     }
 
