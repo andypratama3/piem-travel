@@ -84,8 +84,8 @@
             <div class="mb-3">
                 <label class="form-label" for="status">Status <code>*</code></label>
                 <select class="form-select @error('status') is-invalid @enderror" id="status" name="status" aria-label="Product Status">
-                    <option value="1" {{ old('status', $product->status) == 1 ? 'selected' : '' }}>Active</option>
                     <option value="0" {{ old('status', $product->status) == 0 ? 'selected' : '' }}>Inactive</option>
+                    <option value="1" {{ old('status', $product->status) == 1 ? 'selected' : '' }}>Active</option>
                 </select>
                 @error('status')
                 <div class="invalid-feedback">
