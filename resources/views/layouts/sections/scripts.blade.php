@@ -64,5 +64,7 @@
                 });
             });
     });
-
+    function reloadTable() {
+            $('.datatables-products').DataTable().ajax.reload();
+        }
 </script>

@@ -15,7 +15,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('content.dashboard.data.product.index');
+        $categorys = Category::orderBy('name','asc')->get();
+        return view('content.dashboard.data.product.index', compact('categorys'));
     }
 
 
@@ -28,6 +29,17 @@ class ProductController extends Controller
     public function dataTable(Request $request)
     {
         $products = Produk::with('category')->select('id', 'name', 'description', 'image', 'price', 'stock', 'status', 'slug');
+
+        if($request->status){
+            $products->where('status', $request->status);
+        }
+
+        if($request->category){
+            $products->whereHas('category', function ($query) use ($request) {
+                $query->where('id', $request->category);
+            });
+        }
+        
 
         return DataTables::of($products)
             ->addColumn('image', function ($product) {

@@ -92,21 +92,19 @@
             <h5 class="card-title">Filter</h5>
             <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                 <div class="col-md-4 product_status">
-                    <select id="ProductStatus" class="form-select text-capitalize">
-                        <option value="">Status</option>
-                        <option value="Scheduled">Scheduled</option>
-                        <option value="Publish">Publish</option>
-                        <option value="Inactive">Inactive</option>
+                    <select id="status" class="form-select text-capitalize">
+                        <option selected disabled>Select Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
                     </select></div>
-                <div class="col-md-4 product_category"><select id="ProductCategory" class="form-select text-capitalize">
-                        <option value="">Category</option>
-                        <option value="Household">Household</option>
-                        <option value="Office">Office</option>
-                        <option value="Electronics">Electronics</option>
-                        <option value="Shoes">Shoes</option>
-                        <option value="Accessories">Accessories</option>
-                        <option value="Game">Game</option>
-                    </select></div>
+                <div class="col-md-4 product_category">
+                    <select id="ProductCategory"  class="form-select text-capitalize">
+                        <option selected disabled>Select Category</option>
+                        @foreach ($categorys as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="col-md-4 product_stock">
                     <select id="ProductStock" class="form-select text-capitalize">
                         <option value=""> Stock </option>
@@ -117,7 +115,7 @@
             </div>
         </div>
 
-        <div class="card-datatable table-responsive">
+        <div class="card-datatable table-responsive table-bordered">
             <table class="datatables-products table border-top">
                 <thead>
                     <tr>
@@ -148,7 +146,17 @@
             processing: true,
             serverSide: true,
             responsive: true,
-            ajax: "{{ route('dashboard.product.datatable') }}",
+            autoWidth: true,
+            paging: 'basic_numbers',
+            ajax: {
+                'url' : "{{ route('dashboard.product.datatable') }}",
+                'data': function (data) {
+                    data.status = $('#status').val();
+                    data.category = $('#ProductCategory').val();
+                    // data.stock = $('#ProductStock').val();
+                }
+            },
+
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},
@@ -157,7 +165,7 @@
                 {
                     data: 'image', name: 'image'
                     , render: function (data) {
-                        return `<img src="${data}" width="50" height="50" />`
+                        return `<a href="${data}" target="_blank"><img src="${data}" width="50" height="50" /></a>`
                     }
                 },
                 {data: 'price', name: 'price'},
@@ -207,15 +215,20 @@
                                     'Your file has been deleted.',
                                     'success'
                                 );
-                                $('.datatables-products').DataTable().ajax.reload();
+                                reloadTable();
                             }
                         }
                     });
                 }
             });
         });
-
-    })
+        $('#status').on('change', function() {
+            reloadTable();
+        });
+        $('#ProductCategory').on('change', function() {
+            reloadTable();
+        });
+    });
 </script>
 
 
