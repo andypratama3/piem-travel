@@ -40,7 +40,7 @@ class ProductAction
         if (empty($productData->slug)) {
             $product->category()->attach($productData->category);
         } else {
-            $product->category()->sync([$productData->category]);
+            $product->category()->sync($productData->category);
         }
     }
 }

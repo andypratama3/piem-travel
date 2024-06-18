@@ -10,7 +10,7 @@ class ProductData extends Data
 {
     public function __construct(
         public readonly string $name,
-        public readonly UploadedFile $image,
+        public readonly ?UploadedFile $image,
         public readonly string $price,
         public readonly string $stock,
         public readonly string $status,
@@ -45,7 +45,7 @@ class ProductData extends Data
             'stock.required' => 'Column Stock Product Cannot Be Empty!',
             'status.required' => 'Column Status Product Cannot Be Empty!',
             'category.required' => 'Column Category Product Cannot Be Empty!',
-            'image.required|image|mimes:png,jpg,jpeg' => 'Column Image Product Cannot Be Empty!',
+            'image|mimes:png,jpg,jpeg' => 'Column Image Product Cannot Be Empty!',
         ];
     }
 }

@@ -12,17 +12,17 @@
       "slug": "dashboard",
       "submenu": [
         {
-          "url": "dashboard/product/kategori",
+          "url": "dashboard/list/kategori",
           "name": "Kategori",
           "slug": "dashboard.kategori.index"
         },
         {
-          "url": "dashboard/product/create",
+          "url": "dashboard/list/product/create",
           "name": "Create Product",
           "slug": "dashboard.product.create"
         },
         {
-          "url": "dashboard/product/",
+          "url": "dashboard/list/product/",
           "name": "Product List",
           "slug": "dashboard.product.index"
         }

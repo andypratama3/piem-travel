@@ -161,13 +161,58 @@
                     }
                 },
                 {data: 'price', name: 'price'},
-                {data: 'status', name: 'status'},
+                {
+                    data: 'status', name: 'status',
+                    render: function (data) {
+                        if (data == 'active') {
+                            return `<span class="badge bg-label-success">Active</span>`
+                        } else {
+                            return `<span class="badge bg-label-danger">Inactive</span>`
+                        }
+                    }
+                },
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             "columnDefs": [{
                 "targets": 0,
                 "orderable": false
-            }]
+            }],
+        });
+
+        $('.datatables-products').on('click', '#btn-delete', function () {
+            let slug = $(this).data('id');
+            url = "{{ route('dashboard.product.destroy', ':slug') }}".replace(':slug', slug);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE', // Laravel method spoofing
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function (response) {
+                            if(response.success) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+                                $('.datatables-products').DataTable().ajax.reload();
+                            }
+                        }
+                    });
+                }
+            });
         });
 
     })

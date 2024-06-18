@@ -62,8 +62,8 @@ use App\Http\Controllers\dashboard\CategoryController as DashboardCategoryContro
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', DashboardController::class)->name('dashboard');
 
-    Route::prefix('product')->group(function () {
-        Route::resource('/', DashboardProductController::class, ['names' => 'dashboard.product']);
+    Route::prefix('list')->group(function () {
+        Route::resource('/product', DashboardProductController::class, ['names' => 'dashboard.product']);
         Route::get('datatable', [DashboardProductController::class, 'datatable'])->name('dashboard.product.datatable');
         Route::resource('kategori', DashboardCategoryController::class, ['names' => 'dashboard.kategori']);
 

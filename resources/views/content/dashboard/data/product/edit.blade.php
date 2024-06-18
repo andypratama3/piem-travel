@@ -51,7 +51,10 @@
                 </div>
                 <div class="col">
                     <label class="form-label" for="productImage">Image <code>*</code></label>
-                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="productImage" name="image" aria-label="Product Image">
+                    <div class="input-group">
+                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="productImage" name="image" value="{{ old('image', $product->image) }}" aria-label="Product Image">
+                        <a href="{{ asset('storage/images/products/' . $product->image) }}" target="__blank" class="input-group-text">Lihat Foto</a>
+                    </div>
                     @error('image')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -64,6 +67,9 @@
                 <label class="form-label" for="category">Category <code>*</code></label>
                 <select class="form-select select2 @error('category') is-invalid @enderror" multiple id="category-select2" name="category[]" aria-label="Product Category" >
                     <option disabled>Select category</option>
+                    @foreach ($product->category as $category)
+                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                    @endforeach
                     @foreach ($categorys as $category)
                         <option value="{{ $category->id }}" {{ old('category', $product->category) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
@@ -129,7 +135,7 @@
                 allowClear: true
             });
 
-            jQuery('#category-select2').val({{ old('category', $product->category) }}).trigger('change');
+            jQuery('#category-select2').select2();
         });
     });
 </script>

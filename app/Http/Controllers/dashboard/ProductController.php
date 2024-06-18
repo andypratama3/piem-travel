@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\DataTransferObjects\ProductData;
 use Yajra\DataTables\Facades\DataTables;
 use App\Actions\dashboard\Product\ProductAction;
+use App\Actions\dashboard\Product\ProductActionDelete;
 
 class ProductController extends Controller
 {
@@ -38,9 +39,9 @@ class ProductController extends Controller
             })
             ->addColumn('action', function ($row) {
                 return '
-                    <a href="' . route('dashboard.product.show', $row->slug) . '" class="btn btn-sm btn-rounded btn-warning"><i class="mdi mdi-eye icon-sm"></i></a>
-                    <a href="' . route('dashboard.product.edit', $row->slug) . '" class="btn btn-sm btn-rounded btn-primary"><i class="mdi mdi-pen icon-sm"></i></a>
-                    <button data-id="' . $row['slug'] . '" class="btn btn-sm btn-rounded btn-danger" id="btn-delete"><i class="mdi mdi-delete icon-sm"></i></button>';
+                    <a href="' . route('dashboard.product.show', $row->slug) . '" class="btn btn-sm btn-rounded btn-warning"><i class="mdi mdi-eye"></i></a>
+                    <a href="' . route('dashboard.product.edit', $row->slug) . '" class="btn btn-sm btn-rounded btn-primary"><i class="mdi mdi-pen"></i></a>
+                    <button data-id="' . $row['slug'] . '" class="btn btn-sm btn-rounded btn-danger" id="btn-delete"><i class="mdi mdi-delete"></i></button>';
             })
             ->addIndexColumn()
             ->make(true);
@@ -55,6 +56,7 @@ class ProductController extends Controller
 
     public function show(Produk $product)
     {
+        dd($product);
         return view('content.dashboard.data.product.show', compact('product'));
     }
 
@@ -73,8 +75,11 @@ class ProductController extends Controller
 
     public function destroy(ProductActionDelete $productActionDelete,Produk $product)
     {
-        $productActionDelete->execute($product);
-        flash()->success('Success Delete Product');
-        return redirect()->route('dashboard.product.index');
+        $action = $productActionDelete->execute($product);
+        if ($action) {
+            return response()->json(['success' => true]);
+        }else {
+            return response()->json(['success' => false]);
+        }
     }
 }
