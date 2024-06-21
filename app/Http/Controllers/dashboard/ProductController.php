@@ -39,11 +39,14 @@ class ProductController extends Controller
                 $query->where('id', $request->category);
             });
         }
-        
+
 
         return DataTables::of($products)
             ->addColumn('image', function ($product) {
                 return asset('storage/images/products/' . $product->image);
+            })
+            ->addColumn('price', function ($product) {
+                return 'Rp. ' . number_format($product->price, 0, ',', '.');
             })
             ->addColumn('category', function ($product) {
                 $categorys = $product->category->pluck('name')->implode(',');

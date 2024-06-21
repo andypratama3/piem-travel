@@ -39,7 +39,7 @@
                     <label class="form-label" for="productPrice">Price <code>*</code></label>
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="text" class="form-control @error('price') is-invalid @enderror" placeholder="0 " id="productPrice" name="price" aria-label="Product Price " value="{{ old('price') }}">
+                        <input type="text" id="price" class="form-control @error('price') is-invalid @enderror" placeholder="0" id="productPrice" name="price" aria-label="Product Price" value="{{ old('price') }}">
                         @error('price')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -79,6 +79,17 @@
                     <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactive</option>
                     <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Active</option>
                 </select>
+                @error('status')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label" for="status">Periode <code>*</code></label>
+                <input type="date" class="form-control" type="mounth, year" name="periode" value="{{ old('periode') }}">
                 @error('status')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -127,6 +138,18 @@
                 allowClear: true
             });
         });
+
+
+        //format rupiah
+        $('#price').on('keyup', function () {
+            let price = $(this).val();
+            price = price.replace(/[^0-9.]/g, '');
+            price = formatRupiah(price);
+            $(this).val(price);
+        });
+
+
+
     });
 </script>
 @endsection

@@ -45,7 +45,7 @@ class ProductData extends Data
             'stock.required' => 'Column Stock Product Cannot Be Empty!',
             'status.required' => 'Column Status Product Cannot Be Empty!',
             'category.required' => 'Column Category Product Cannot Be Empty!',
-            'image|mimes:png,jpg,jpeg' => 'Column Image Product Cannot Be Empty!',
+            'image required|mimes:png,jpg,jpeg' => 'Column Image Product Cannot Be Empty!',
         ];
     }
 }

@@ -41,7 +41,7 @@
                     <label class="form-label" for="productPrice">Price <code>*</code></label>
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="text" class="form-control @error('price') is-invalid @enderror" placeholder="0 " id="productPrice" name="price" aria-label="Product Price " value="{{ old('price', $product->price) }}">
+                        <input type="text" id="price" class="form-control @error('price') is-invalid @enderror" placeholder="0 " id="productPrice" name="price" aria-label="Product Price " value="{{ old('price', $product->price) }}">
                         @error('price')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -84,6 +84,7 @@
             <div class="mb-3">
                 <label class="form-label" for="status">Status <code>*</code></label>
                 <select class="form-select @error('status') is-invalid @enderror" id="status" name="status" aria-label="Product Status">
+                    <option selected value="{{ $product->status }}">{{ $product->status == 0 ? 'Inactive' : 'Active' }}</option>
                     <option value="0" {{ old('status', $product->status) == 0 ? 'selected' : '' }}>Inactive</option>
                     <option value="1" {{ old('status', $product->status) == 1 ? 'selected' : '' }}>Active</option>
                 </select>
@@ -137,6 +138,17 @@
 
             jQuery('#category-select2').select2();
         });
+
+        let price = $('#price').val();
+
+        $('#price').on('keyup', function () {
+        let price = $(this).val();
+            price = price.replace(/[^0-9.]/g, '');
+            price = formatRupiah(price);
+            $(this).val(price);
+        });
+
+        $('#price').val(formatRupiah(price));
     });
 </script>
 @endsection

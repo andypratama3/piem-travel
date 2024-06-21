@@ -4,6 +4,7 @@
 
 @section('vendor-style')
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
 @endsection
 @section('content')
 
@@ -98,8 +99,8 @@
                         <option value="inactive">Inactive</option>
                     </select></div>
                 <div class="col-md-4 product_category">
-                    <select id="ProductCategory"  class="form-select text-capitalize">
-                        <option selected disabled>Select Category</option>
+                    <select id="ProductCategory"  class="form-select text-capitalize" multiple>
+                        {{-- <option selected disabled>Select Category</option> --}}
                         @foreach ($categorys as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
@@ -140,6 +141,7 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     jQuery(document).ready(function () {
         $('.datatables-products').DataTable({
@@ -172,7 +174,7 @@
                 {
                     data: 'status', name: 'status',
                     render: function (data) {
-                        if (data == 'active') {
+                        if (data == 1) {
                             return `<span class="badge bg-label-success">Active</span>`
                         } else {
                             return `<span class="badge bg-label-danger">Inactive</span>`
@@ -198,7 +200,8 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, delete it!',
+                reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -227,6 +230,14 @@
         });
         $('#ProductCategory').on('change', function() {
             reloadTable();
+        });
+
+
+        jQuery(document).ready(function () {
+            jQuery('#ProductCategory').select2( {
+                placeholder: 'Select category',
+                allowClear: true
+            });
         });
     });
 </script>

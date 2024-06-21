@@ -1,5 +1,5 @@
 @extends('landing.layouts.partials.landing')
-
+@section('description-content', 'Home')
 @section('title', 'Home')
 
 @section('content')

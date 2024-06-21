@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('price');
             $table->string('stock');
-            $table->string('status')->default('active');
+            $table->string('status')->default(0);
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
