@@ -51,8 +51,13 @@ use App\Http\Controllers\pages\AccountSettingsNotifications;
 //Dashboard
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
+use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+use App\Http\Controllers\dashboard\ProfileController as DashboardProfilController;
+use App\Http\Controllers\dashboard\InvoiceController as DashboardInvoiceController;
 use App\Http\Controllers\dashboard\ProductController as DashboardProductController;
+
 use App\Http\Controllers\dashboard\CategoryController as DashboardCategoryController;
+use App\Http\Controllers\dashboard\SettingsController as DashboardSettingsController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -60,7 +65,7 @@ use App\Http\Controllers\dashboard\CategoryController as DashboardCategoryContro
 
 
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', DashboardController::class)->name('dashboard');
 
     Route::prefix('list')->group(function () {
@@ -69,6 +74,17 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::resource('kategori', DashboardCategoryController::class, ['names' => 'dashboard.kategori']);
 
     });
+
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [DashboardProfilController::class, 'index'])->name('dashboard.profile.index');
+        Route::post('/profiles/photo/delete', [DashboardProfilController::class, 'deleteProfile'])->name('dashboard.profile.photo.delete');
+
+        Route::resource('/settings', DashboardSettingsController::class, ['names' => 'dashboard.profile.settings']);
+    });
+
+    //invoice
+    Route::resource('/invoice', DashboardInvoiceController::class, ['names' => 'dashboard.invoice']);
+
 });
 // Route::middleware([
 //     'auth:sanctum',
@@ -83,6 +99,13 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 // Main Page Route
 Route::get('/', [LandingController::class, 'index'])->name('dashboard-analytics');
+
+
+// User Authentication
+// Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+
+
+    
 
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');

@@ -14,6 +14,8 @@ class ProductData extends Data
         public readonly string $price,
         public readonly string $stock,
         public readonly string $status,
+        public readonly string $type,
+        public readonly string $periode,
         public readonly array $category,
         public readonly string $description,
         public readonly ?string $slug,
@@ -30,6 +32,8 @@ class ProductData extends Data
             $request->getPrice(),
             $request->getStock(),
             $request->getStatus(),
+            $request->getType(),
+            $request->getPeriode(),
             $request->getCategory(),
             $request->getDescription(),
             $request->getSlug(),
@@ -45,6 +49,8 @@ class ProductData extends Data
             'stock.required' => 'Column Stock Product Cannot Be Empty!',
             'status.required' => 'Column Status Product Cannot Be Empty!',
             'category.required' => 'Column Category Product Cannot Be Empty!',
+            'type.required' => 'Column Type Product Cannot Be Empty!',
+            'periode.required' => 'Column Periode Product Cannot Be Empty!',
             'image required|mimes:png,jpg,jpeg' => 'Column Image Product Cannot Be Empty!',
         ];
     }

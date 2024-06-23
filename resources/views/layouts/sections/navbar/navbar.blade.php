@@ -57,7 +57,11 @@ $navbarDetached = ($navbarDetached ?? '');
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);" data-bs-toggle="dropdown">
               <div class="avatar avatar-online">
+                @if(Auth::user()->profile_photo_path != null)
+                <img src="{{ asset('storage/images/'. Auth::user()->profile_photo_path) }}" alt class="w-px-40 h-auto rounded-circle">
+                @else
                 <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                @endif
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end mt-3 py-2">
@@ -66,12 +70,16 @@ $navbarDetached = ($navbarDetached ?? '');
                   <div class="d-flex align-items-center">
                     <div class="flex-shrink-0 me-2 pe-1">
                       <div class="avatar avatar-online">
+                        @if(Auth::user()->profile_photo_path != null)
+                        <img src="{{ asset('storage/images/'. Auth::user()->profile_photo_path) }}" alt class="w-px-40 h-auto rounded-circle">
+                        @else
                         <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                        @endif
                       </div>
                     </div>
                     <div class="flex-grow-1">
-                      <h6 class="mb-0">John Doe</h6>
-                      <small class="text-muted">Admin</small>
+                      <h6 class="mb-0">{{ Auth::user()->name }}</h6>
+                      <small class="text-muted">{{ Auth::user()->roles }}</small>
                     </div>
                   </div>
                 </a>
@@ -80,13 +88,13 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="dropdown-divider my-1"></div>
               </li>
               <li>
-                <a class="dropdown-item" href="javascript:void(0);">
+                <a class="dropdown-item" href="{{ route('dashboard.profile.index') }}">
                   <i class="mdi mdi-account-outline me-1 mdi-20px"></i>
                   <span class="align-middle">My Profile</span>
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="javascript:void(0);">
+                <a class="dropdown-item" href="{{ route('dashboard.profile.settings.index') }}">
                   <i class='mdi mdi-cog-outline me-1 mdi-20px'></i>
                   <span class="align-middle">Settings</span>
                 </a>
@@ -104,10 +112,14 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="dropdown-divider my-1"></div>
               </li>
               <li>
-                <a class="dropdown-item" href="javascript:void(0);">
-                  <i class='mdi mdi-power me-1 mdi-20px'></i>
-                  <span class="align-middle">Log Out</span>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <form action="{{ route('logout') }}" method="POST" class="d-none" id="logout-form">
+                        @csrf
+                    </form>
+                    <i class='mdi mdi-power me-1 mdi-20px'></i>
+                    <span class="align-middle">Log Out</span>
                 </a>
+
               </li>
             </ul>
           </li>

@@ -39,6 +39,16 @@ class ProductRequest extends FormRequest
         $this->stock;
     }
 
+    public function getType()
+    {
+        $this->type;
+    }
+
+    public function getPeriode()
+    {
+        $this->periode;
+    }
+
     public function getStatus()
     {
         $this->status;

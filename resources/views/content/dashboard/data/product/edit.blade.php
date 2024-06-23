@@ -27,6 +27,16 @@
                 </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label class="form-label" for="product-name">Type <code>*</code></label>
+                <input type="text" name="type" class="form-control @error('type') is-invalid @enderror" id="product-type" placeholder="Product Type" aria-label="Product Type" value="{{ old('type', $product->type) }}">
+                @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
             <div class="row mb-3">
                 <div class="col">
                     <label class="form-label" for="stock">Stock <code>*</code></label>
@@ -88,6 +98,16 @@
                     <option value="0" {{ old('status', $product->status) == 0 ? 'selected' : '' }}>Inactive</option>
                     <option value="1" {{ old('status', $product->status) == 1 ? 'selected' : '' }}>Active</option>
                 </select>
+                @error('status')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="status">Periode <code>*</code></label>
+                <input type="month" class="form-control" name="periode" value="{{ old('periode', $product->periode) }}">
                 @error('status')
                 <div class="invalid-feedback">
                     {{ $message }}

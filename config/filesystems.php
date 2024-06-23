@@ -43,6 +43,11 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'profile_photos' => [
+            'driver' => 'local',
+            'root' => public_path('storage/images/'),
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

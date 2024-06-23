@@ -18,7 +18,16 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="product-name">Name <code>*</code></label>
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="product-name" placeholder="Product title" name="productTitle" aria-label="Product title" value="{{ old('name') }}">
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="product-name" placeholder="Product title" aria-label="Product title" value="{{ old('name') }}">
+                @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="product-name">Type <code>*</code></label>
+                <input type="text" name="type" class="form-control @error('type') is-invalid @enderror" id="product-type" placeholder="Product Type" aria-label="Product Type" value="{{ old('type') }}">
                 @error('name')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -89,7 +98,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="status">Periode <code>*</code></label>
-                <input type="date" class="form-control" type="mounth, year" name="periode" value="{{ old('periode') }}">
+                <input type="month" class="form-control" name="periode" value="{{ old('periode') }}">
                 @error('status')
                 <div class="invalid-feedback">
                     {{ $message }}

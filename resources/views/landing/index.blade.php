@@ -28,14 +28,16 @@
     </marquee>
   </header>
   <section class="price-section" id="price-section">
+
     <img src="{{ asset('assets_landing/img/dotted-line.png')}}" class="dotted-line"></img>
     <div class="container">
       <h1>HARGA PAKET</h1>
       <div class="row">
+        @forelse ($products as $product)
         <div class="col-md-4 col-sm-6 my-3">
           <div class="pkg-content">
-            <p class="pkg-title">Paket A</p>
-            <h3>Rp.28.000.000 <span>/Pax Quad Room</span></h3>
+            <p class="pkg-title">{{ $product->name }}</p>
+            <h3>@currency($product->price) <span>/Pax Quad Room</span></h3>
             <ul>
               <li>Feature</li>
               <li>Feature</li>
@@ -43,43 +45,14 @@
               <li>Feature</li>
             </ul>
             <a href="" class="detail-btn">
-              Detail Paket
+              Lihat Paket
               <img src="{{ asset('assets_landing/img/right-arrow.svg')}}" alt="" />
             </a>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 my-3">
-          <div class="pkg-content">
-            <p class="pkg-title">Paket B</p>
-            <h3>Rp.29.500.000 <span>/Pax Double Room</span></h3>
-            <ul>
-              <li>Feature</li>
-              <li>Feature</li>
-              <li>Feature</li>
-              <li>Feature</li>
-            </ul>
-            <a href="" class="detail-btn">
-              Detail Paket
-              <img src="{{ asset('assets_landing/img/right-arrow.svg')}}" alt="" />
-            </a>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 my-3">
-          <div class="pkg-content">
-            <p class="pkg-title">Paket C</p>
-            <h3>Rp.31.000.000 <span>/Pax Triple Room</span></h3>
-            <ul>
-              <li>Feature</li>
-              <li>Feature</li>
-              <li>Feature</li>
-              <li>Feature</li>
-            </ul>
-            <a href="" class="detail-btn">
-              Detail Paket
-              <img src="{{ asset('assets_landing/img/right-arrow.svg')}}" alt="" />
-            </a>
-          </div>
-        </div>
+        @empty
+
+        @endforelse
       </div>
     </div>
   </section>

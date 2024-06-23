@@ -24,7 +24,7 @@ class ProductAction
             $picture_name = $product->image;
 
         }
-        
+
         $price = str_replace('.', '', ($productData->price));
 
         $product = Produk::updateOrCreate(
@@ -35,6 +35,8 @@ class ProductAction
                 'image' => $picture_name,
                 'price' => intval($price),
                 'stock' => $productData->stock,
+                'type' => $productData->type,
+                'periode' => $productData->periode,
                 'status' => $productData->status
             ]
         );

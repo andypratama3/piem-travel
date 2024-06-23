@@ -21,6 +21,8 @@ class Produk extends Model
         'image',
         'price',
         'stock',
+        'type',
+        'periode',
         'status',
         'slug',
     ];

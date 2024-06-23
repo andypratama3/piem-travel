@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('image');
             $table->string('price');
             $table->string('stock');
+            $table->string('type');
+            $table->string('periode');
             $table->string('status')->default(0);
             $table->string('slug');
             $table->softDeletes();
