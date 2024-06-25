@@ -10,8 +10,6 @@
 
 <h4 class="py-3 mb-4">
     <span class="text-muted fw-light">Product /</span> List
-    {{-- <a href="{{ route('dashboard.kategori.create') }}" class="btn btn-primary btn-sm float-end"><i
-        class="mdi mdi-plus"></i> Create</a> --}}
 </h4>
 
 <div class="col-md-12">
@@ -151,7 +149,7 @@
             autoWidth: true,
             paging: 'basic_numbers',
             ajax: {
-                'url' : "{{ route('dashboard.product.datatable') }}",
+                'url' : "{{ route('dashboard.list.product.datatable') }}",
                 'data': function (data) {
                     data.status = $('#status').val();
                     data.category = $('#ProductCategory').val();
@@ -191,7 +189,7 @@
 
         $('.datatables-products').on('click', '#btn-delete', function () {
             let slug = $(this).data('id');
-            url = "{{ route('dashboard.product.destroy', ':slug') }}".replace(':slug', slug);
+            url = "{{ route('dashboard.list.product.destroy', ':slug') }}".replace(':slug', slug);
 
             Swal.fire({
                 title: 'Are you sure?',

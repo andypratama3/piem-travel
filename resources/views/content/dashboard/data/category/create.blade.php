@@ -14,7 +14,7 @@
             <h5 class="card-tile mb-0">Create Category</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('dashboard.kategori.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('dashboard.list.kategori.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <div class="mb-3">
                     <label class="form-label" for="name">Name</label>
@@ -36,7 +36,7 @@
                     <textarea  name="description" id="description" class="d-none @error('description') is-invalid @enderror" readonly>{{ old('description') }}</textarea>
                 </div>
                 <div class="mt-2">
-                    <a href="{{ route('dashboard.kategori.index') }}" class="btn btn-danger btn-sm">Kembali</a>
+                    <a href="{{ route('dashboard.list.kategori.index') }}" class="btn btn-danger btn-sm">Back</a>
                     <button class="btn btn-primary btn-sm float-end">Submit</button>
                 </div>
             </form>

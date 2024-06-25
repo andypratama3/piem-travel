@@ -14,7 +14,7 @@
             <h5 class="card-tile mb-0">Edit Category</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('dashboard.kategori.update', $category->slug) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('dashboard.list.kategori.update', $category->slug) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
                 <input type="hidden" name="slug" value="{{ $category->slug }}">
@@ -39,7 +39,7 @@
                     <textarea  name="description" id="description" class="d-none @error('description') is-invalid @enderror" readonly>{{ old('description', $category->description) }}</textarea>
                 </div>
                 <div class="mt-2">
-                    <a href="{{ route('dashboard.kategori.index') }}" class="btn btn-danger btn-sm">Kembali</a>
+                    <a href="{{ route('dashboard.list.kategori.index') }}" class="btn btn-danger btn-sm">Back</a>
                     <button class="btn btn-primary btn-sm float-end">Submit</button>
                 </div>
             </form>

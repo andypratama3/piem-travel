@@ -54,8 +54,8 @@ class ProductController extends Controller
             })
             ->addColumn('action', function ($row) {
                 return '
-                    <a href="' . route('dashboard.product.show', $row->slug) . '" class="btn btn-sm btn-rounded btn-warning"><i class="mdi mdi-eye"></i></a>
-                    <a href="' . route('dashboard.product.edit', $row->slug) . '" class="btn btn-sm btn-rounded btn-primary"><i class="mdi mdi-pen"></i></a>
+                    <a href="' . route('dashboard.list.product.show', $row->slug) . '" class="btn btn-sm btn-rounded btn-warning"><i class="mdi mdi-eye"></i></a>
+                    <a href="' . route('dashboard.list.product.edit', $row->slug) . '" class="btn btn-sm btn-rounded btn-primary"><i class="mdi mdi-pen"></i></a>
                     <button data-id="' . $row['slug'] . '" class="btn btn-sm btn-rounded btn-danger" id="btn-delete"><i class="mdi mdi-delete"></i></button>';
             })
             ->addIndexColumn()
@@ -66,7 +66,7 @@ class ProductController extends Controller
     {
         $productAction->execute($productData);
         flash()->success('Success Add Product');
-        return redirect()->route('dashboard.product.index');
+        return redirect()->route('dashboard.list.product.index');
     }
 
     public function show(Produk $product)
@@ -84,7 +84,7 @@ class ProductController extends Controller
     {
         $productAction->execute($productData, $product);
         flash()->success('Success Update Product');
-        return redirect()->route('dashboard.product.index');
+        return redirect()->route('dashboard.list.product.index');
     }
 
     public function destroy(ProductActionDelete $productActionDelete,Produk $product)

@@ -9,22 +9,22 @@
     {
       "name": "Product",
       "icon": "menu-icon tf-icons mdi mdi-database",
-      "slug": "dashboard",
+      "slug": "dashboard.list",
       "submenu": [
         {
           "url": "dashboard/list/kategori",
-          "name": "Kategori",
-          "slug": "dashboard.kategori.index"
+          "name": "Category",
+          "slug": "dashboard.list.kategori.index"
         },
         {
           "url": "dashboard/list/product/create",
           "name": "Create Product",
-          "slug": "dashboard.product.create"
+          "slug": "dashboard.list.product.create"
         },
         {
           "url": "dashboard/list/product/",
           "name": "Product List",
-          "slug": "dashboard.product.index"
+          "slug": "dashboard.list.product.index"
         }
       ]
     },
@@ -87,17 +87,23 @@
       ]
     },
     {
-      "menuHeader": "Apps & Pages"
+      "menuHeader": "Access Pages"
     },
     {
-      "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/email",
-      "name": "Email",
-      "icon": "menu-icon tf-icons mdi mdi-email-outline",
-      "slug": "app-email",
-      "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
+      "name": "Role & Permissions",
+      "icon": "menu-icon tf-icons mdi mdi-shield-star-outline",
+      "slug": "dashboard.access",
+      "submenu": [
+        {
+          "url": "dashboard/access/roles",
+          "name": "Role",
+          "slug": "dashboard.access.roles.index"
+        },
+        {
+          "url": "dashboard/access/permissions",
+          "name": "Permissions",
+          "slug": "dashboard.access.permissions.index"
+        }
       ]
     },
     {

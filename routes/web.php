@@ -42,20 +42,23 @@ use App\Http\Controllers\pages\AccountSettingsAccount;
 
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\dashboard\DashboardController;
+use App\Http\Controllers\dashboard\Access\RoleController;
+use App\Http\Controllers\dashboard\Access\UserController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
-use App\Http\Controllers\pages\AccountSettingsConnections;
-use App\Http\Controllers\pages\AccountSettingsNotifications;
 
 
 
 //Dashboard
+use App\Http\Controllers\pages\AccountSettingsConnections;
+use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
+use App\Http\Controllers\dashboard\Access\PermissionsController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+
 use App\Http\Controllers\dashboard\ProfileController as DashboardProfilController;
 use App\Http\Controllers\dashboard\InvoiceController as DashboardInvoiceController;
 use App\Http\Controllers\dashboard\ProductController as DashboardProductController;
-
 use App\Http\Controllers\dashboard\CategoryController as DashboardCategoryController;
 use App\Http\Controllers\dashboard\SettingsController as DashboardSettingsController;
 
@@ -69,9 +72,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:sanctum', 'verifie
     Route::get('/', DashboardController::class)->name('dashboard');
 
     Route::prefix('list')->group(function () {
-        Route::resource('/product', DashboardProductController::class, ['names' => 'dashboard.product']);
-        Route::get('datatable', [DashboardProductController::class, 'datatable'])->name('dashboard.product.datatable');
-        Route::resource('kategori', DashboardCategoryController::class, ['names' => 'dashboard.kategori']);
+        Route::resource('/product', DashboardProductController::class, ['names' => 'dashboard.list.product']);
+        Route::get('datatable', [DashboardProductController::class, 'datatable'])->name('dashboard.list.product.datatable');
+        Route::resource('kategori', DashboardCategoryController::class, ['names' => 'dashboard.list.kategori']);
 
     });
 
@@ -80,6 +83,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:sanctum', 'verifie
         Route::post('/profiles/photo/delete', [DashboardProfilController::class, 'deleteProfile'])->name('dashboard.profile.photo.delete');
 
         Route::resource('/settings', DashboardSettingsController::class, ['names' => 'dashboard.profile.settings']);
+    });
+
+    Route::prefix('access')->group(function () {
+        Route::resource('roles', RoleController::class, [ 'names' => 'dashboard.access.roles']);
+        Route::resource('permissions', PermissionsController::class, ['names' => 'dashboard.access.permissions']);
+        Route::resource('users', UserController::class, ['names' => 'dashboard.access.users']);
     });
 
     //invoice
@@ -105,7 +114,7 @@ Route::get('/', [LandingController::class, 'index'])->name('dashboard-analytics'
 // Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
 
 
-    
+
 
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');

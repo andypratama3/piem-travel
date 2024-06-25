@@ -14,7 +14,7 @@
             <h5 class="card-tile mb-0">Create Product</h5>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('dashboard.product.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('dashboard.list.product.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="product-name">Name <code>*</code></label>
@@ -118,7 +118,7 @@
             </div>
 
             <div class="mt-2">
-                <a href="{{ route('dashboard.product.index') }}" class="btn btn-danger btn-sm">Kembali</a>
+                <a href="{{ route('dashboard.list.product.index') }}" class="btn btn-danger btn-sm">Back</a>
                 <button class="btn btn-primary btn-sm float-end">Submit</button>
             </div>
             </form>

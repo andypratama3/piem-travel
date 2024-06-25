@@ -65,7 +65,7 @@
             </div>
 
             <div class="mt-2">
-                <a href="{{ route('dashboard.product.index') }}" class="btn btn-danger btn-sm">Kembali</a>
+                <a href="{{ route('dashboard.list.product.index') }}" class="btn btn-danger btn-sm">Back</a>
             </div>
         </div>
     </div>
