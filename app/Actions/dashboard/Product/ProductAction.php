@@ -4,11 +4,10 @@ namespace App\Actions\dashboard\Product;
 
 use App\Models\Produk;
 use Illuminate\Support\Str;
-use App\DataTransferObjects\ProductData;
 
 class ProductAction
 {
-    public function execute(ProductData $productData)
+    public function execute($productData)
     {
         if($productData->image) {
             //request foto

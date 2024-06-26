@@ -10,7 +10,16 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::orderby('name','asc')->get();
-        return view('content.dashboard.access.role.index', compact('roles'));
+        $limit = 10;
+        $roles = Role::orderby('name','asc')->paginate($limit);
+        $count = $roles->count();
+        $no = $count - (($roles->currentPage() - 1) * $limit);
+        
+        return view('content.dashboard.access.role.index', compact('roles', 'no', 'count'));
+    }
+
+    public function create()
+    {
+        return view('content.dashboard.access.role.create');
     }
 }

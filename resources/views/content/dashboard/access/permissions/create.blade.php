@@ -10,24 +10,19 @@
         <!-- Form Basic -->
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Create Task</h6>
+                <h6 class="m-0 font-weight-bold text-primary text-center">Create permission</h6>
             </div>
             <div class="card-body">
                 <form action="{{ route('dashboard.access.permissions.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="name" class="form-label text-primary">Name Task </label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Masukan Nama Task">
+                        <label for="name" class="form-label text-primary">Name permission </label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Masukan Nama permission">
                         @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                         @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="name" class="form-label text-primary">Description Task</label>
-                        <input type="text" class="form-control" id="name" name="description"
-                            placeholder="Masukan Deskripsi Task">
                     </div>
 
                     <div class="row">
@@ -52,7 +47,7 @@
                                                 <div class="d-flex">
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input check"
-                                                            id="checkLihat" name="permissions[]" value="View">
+                                                            id="checkLihat" name="guard_name[]" value="View">
                                                         <label for="checkLihat"
                                                             class="form-check-label">Lihat</label>
                                                     </div>
@@ -62,7 +57,7 @@
                                                 <div class="d-flex">
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input check"
-                                                            id="checkTambah" name="permissions[]" value="Create">
+                                                            id="checkTambah" name="guard_name[]" value="Create">
                                                         <label for="checkTambah"
                                                             class="form-check-label">Tambah</label>
                                                     </div>
@@ -72,7 +67,7 @@
                                                 <div class="d-flex">
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input check"
-                                                            id="checkUbah" name="permissions[]" value="Edit">
+                                                            id="checkUbah" name="guard_name[]" value="Edit">
                                                         <label for="checkUbah"
                                                             class="form-check-label">Ubah</label>
                                                     </div>
@@ -82,7 +77,7 @@
                                                 <div class="d-flex">
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input check"
-                                                            id="checkHapus" name="permissions[]" value="Delete">
+                                                            id="checkHapus" name="guard_name[]" value="Delete">
                                                         <label for="checkHapus"
                                                             class="form-check-label">Hapus</label>
                                                     </div>
@@ -102,6 +97,9 @@
                                     <th class="w-25"><button type="button" id="dynamic-ar"
                                             class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i></button></th>
                                 </tr>
+                                <tbody>
+
+                                </tbody>
                             </table>
                         </div>
                     </div>

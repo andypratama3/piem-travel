@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\dashboard;
+namespace App\Http\Controllers\dashboard\PiemTravel;
 
 use App\Models\Produk;
 use App\Models\Category;
@@ -16,14 +16,14 @@ class ProductController extends Controller
     public function index()
     {
         $categorys = Category::orderBy('name','asc')->get();
-        return view('content.dashboard.data.product.index', compact('categorys'));
+        return view('content.dashboard.data.piem-travel.product.index', compact('categorys'));
     }
 
 
     public function create()
     {
         $categorys = Category::orderBy('name','asc')->get();
-        return view('content.dashboard.data.product.create', compact('categorys'));
+        return view('content.dashboard.data.piem-travel.product.create', compact('categorys'));
     }
 
     public function dataTable(Request $request)
@@ -71,13 +71,13 @@ class ProductController extends Controller
 
     public function show(Produk $product)
     {
-        return view('content.dashboard.data.product.show', compact('product'));
+        return view('content.dashboard.data.piem-travel.product.show', compact('product'));
     }
 
     public function edit(Produk $product)
     {
         $categorys = Category::orderBy('name','asc')->get();
-        return view('content.dashboard.data.product.edit', compact('product','categorys'));
+        return view('content.dashboard.data.piem-travel.product.edit', compact('product','categorys'));
     }
 
     public function update(ProductData $productData, ProductAction $productAction,Produk $product)

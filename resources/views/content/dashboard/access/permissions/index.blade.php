@@ -21,14 +21,25 @@
                 <table class="datatables-permissions table border-top">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th></th>
+                            <th>No</th>
                             <th>Name</th>
-                            <th>Assigned To</th>
-                            <th>Created Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
+
+                    <tbody>
+                        @foreach ($permissions as $permission)
+                            <tr>
+                                <td>{{ ++$no }}</td>
+                                <td>{{ $permission->name }}</td>
+                                <td>
+                                    <a href="{{ route('dashboard.access.permissions.edit', $permission->name) }}" class="btn btn-primary btn-sm"><i class="mdi mdi-pen"></i> Edit</a>
+                                    <a href="#" data-id="{{ $permission->name }}"  class="btn btn-danger btn-sm btn-delete"><i class="mdi mdi-delete"></i> Delete</a>
+                                    
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

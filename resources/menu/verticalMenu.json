@@ -7,6 +7,9 @@
       "slug": "dashboard"
     },
     {
+        "menuHeader": "Piem Travel Data"
+    },
+    {
       "name": "Product",
       "icon": "menu-icon tf-icons mdi mdi-database",
       "slug": "dashboard.list",
@@ -29,19 +32,15 @@
       ]
     },
     {
-      "name": "Front Pages",
-      "icon": "menu-icon tf-icons mdi mdi-flip-to-front",
-      "slug": "front-pages",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ],
+      "name": "Master Data",
+      "icon": "menu-icon tf-icons mdi mdi-airplane",
+      "slug": "master-data",
+
       "submenu": [
         {
-          "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/front-pages/landing",
-          "name": "Landing",
-          "slug": "front-pages-landing",
-          "target": "_blank"
+          "url": "/dashboard/master-data/passport",
+          "name": "Passport",
+          "slug": "front-pages-landing"
         },
         {
           "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/front-pages/pricing",

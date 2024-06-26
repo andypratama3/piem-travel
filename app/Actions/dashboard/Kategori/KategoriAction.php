@@ -2,11 +2,10 @@
 namespace App\Actions\dashboard\Kategori;
 
 use App\Models\Category;
-use App\DataTransferObjects\KategoriData;
 
 class KategoriAction
 {
-    public function execute(KategoriData $kategoriData)
+    public function execute($kategoriData)
     {
         $kategori = Category::updateOrCreate(
             [ 'slug' => $kategoriData->slug, ],

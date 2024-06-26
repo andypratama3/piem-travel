@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\dashboard;
+namespace App\Http\Controllers\dashboard\PiemTravel;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -19,12 +19,12 @@ class CategoryController extends Controller
         $kategoris = Category::orderBy('name','asc')->paginate($limit);
         $count = $kategoris->count();
         $no = $limit * ($kategoris->currentPage() - 1);
-        return view('content.dashboard.data.category.index', compact('kategoris', 'count', 'no', 'limit'));
+        return view('content.dashboard.data.piem-travel.category.index', compact('kategoris', 'count', 'no', 'limit'));
     }
 
     public function create()
     {
-        return view('content.dashboard.data.category.create');
+        return view('content.dashboard.data.piem-travel.category.create');
     }
 
     public function store(KategoriData $KategoriData, KategoriAction $kategoriAction)
@@ -37,7 +37,7 @@ class CategoryController extends Controller
     public function edit($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
-        return view('content.dashboard.data.category.edit', compact('category'));
+        return view('content.dashboard.data.piem-travel.category.edit', compact('category'));
     }
 
     public function update(KategoriData $KategoriData, KategoriAction $kategoriAction, $slug)

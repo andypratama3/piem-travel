@@ -114,7 +114,7 @@
             </div>
         </div>
 
-        <div class="card-datatable table-responsive table-bordered">
+        <div class="card-datatable table-responsive table-bordered mx-2 mb-3" >
             <table class="datatables-products table border-top">
                 <thead>
                     <tr>

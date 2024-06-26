@@ -58,9 +58,12 @@ use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 
 use App\Http\Controllers\dashboard\ProfileController as DashboardProfilController;
 use App\Http\Controllers\dashboard\InvoiceController as DashboardInvoiceController;
-use App\Http\Controllers\dashboard\ProductController as DashboardProductController;
-use App\Http\Controllers\dashboard\CategoryController as DashboardCategoryController;
-use App\Http\Controllers\dashboard\SettingsController as DashboardSettingsController;
+//piem travel data
+use App\Http\Controllers\dashboard\PiemTravel\ProductController as DashboardProductController;
+use App\Http\Controllers\dashboard\PiemTravel\CategoryController as DashboardCategoryController;
+use App\Http\Controllers\dashboard\PiemTravel\PassportController as DashboardPassportController;
+//accesss
+use App\Http\Controllers\dashboard\PiemTravel\SettingsController as DashboardSettingsController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -89,6 +92,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:sanctum', 'verifie
         Route::resource('roles', RoleController::class, [ 'names' => 'dashboard.access.roles']);
         Route::resource('permissions', PermissionsController::class, ['names' => 'dashboard.access.permissions']);
         Route::resource('users', UserController::class, ['names' => 'dashboard.access.users']);
+    });
+
+    Route::prefix('master-data')->group(function () {
+        Route::resource('/passport', DashboardPassportController::class, ['names' => 'dashboard.piem-travel.passport']);
+        Route::get('passports/datatable', [DashboardPassportController::class, 'dataTable'])->name('dashboard.piem-travel.passport.datatable');
+
     });
 
     //invoice
